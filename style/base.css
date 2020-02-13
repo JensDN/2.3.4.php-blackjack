@@ -1,0 +1,42 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "PLAYER DEALER";
+    width: 100vw;
+    height: 100vh;
+}
+
+.PLAYER {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "PLAYER-NAME PLAYER-NAME PLAYER-NAME" "HIT STAND SURRENDER" ". NUMBER-PLAYER ." "SCORE-PLAYER SCORE-PLAYER SCORE-PLAYER";
+    grid-area: PLAYER;
+}
+
+.PLAYER-NAME { grid-area: PLAYER-NAME; }
+
+.HIT { grid-area: HIT; }
+
+.STAND { grid-area: STAND; }
+
+.SURRENDER { grid-area: SURRENDER; }
+
+.NUMBER-PLAYER { grid-area: NUMBER-PLAYER; }
+
+.SCORE-PLAYER { grid-area: SCORE-PLAYER; }
+
+.DEALER {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "DEALER-NAME DEALER-NAME DEALER-NAME" ". NUMBER-DEALER ." ". NUMBER-DEALER ." "SCORE-DEALER SCORE-DEALER SCORE-DEALER";
+    grid-area: DEALER;
+}
+
+.SCORE-DEALER { grid-area: SCORE-DEALER; }
+
+.NUMBER-DEALER { grid-area: NUMBER-DEALER; }
+
+.DEALER-NAME { grid-area: DEALER-NAME; }
