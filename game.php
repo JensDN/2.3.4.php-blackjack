@@ -1,17 +1,38 @@
 <?php
-use blackjack\Blackjack;
 require './blackjack/Blackjack.php';
-$player = new Blackjack;
-$dealer = new Blackjack;
+use blackjack\Blackjack;
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+    $player = new Blackjack;
+    $dealer = new Blackjack;
+    $_SESSION['player'] = serialize($player);
+    $_SESSION['dealer'] = serialize($dealer);
+} else {
+    $player = unserialize($_SESSION['player']);
+    $dealer = unserialize($_SESSION['dealer']);
+}
 $player::hit();
 echo $player::$score;
-$player::hit();
-echo $player::$score;
- function CheckHit ($submitPost, $side){
-     if ($submitPost){
-         $side::hit();
-     }
- }
+$_SESSION['player'] = serialize($player);
+/*if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if ($_POST['playerHit']) {
+        $player::hit();
+        $_SESSION['player'] = $player;
+    }
+}*/
+
+function whatIsHappening() {
+    echo '<h2>$_GET</h2>';
+    var_dump($_GET);
+    echo '<h2>$_POST</h2>';
+    var_dump($_POST);
+    echo '<h2>$_COOKIE</h2>';
+    var_dump($_COOKIE);
+    echo '<h2>$_SESSION</h2>';
+    var_dump($_SESSION);
+}
+whatIsHappening();
+
 
 ?>
 <!doctype html>
@@ -33,23 +54,29 @@ echo $player::$score;
         <div class="HIT">
             <h1>HIT</h1>
             <form Name ="hit" Method ="POST">
-                <input type="Submit" name="playerHit" value="true">
+                <input type="submit" name="playerHit" value='hit'>
             </form>
 
         </div>
         <div class="STAND">
             <h1>STAND</h1>
-
+            <form Name ="hit" Method ="POST">
+                <input type="submit" name="playerStand" value='stand'>
+            </form>
         </div>
         <div class="SURRENDER">
             <h1>SURRENDER</h1>
-
+            <form Name ="hit" Method ="POST">
+                <input type="submit" name="playerSurrender" value='surrender'>
+            </form>
         </div>
         <div class="NUMBER-PLAYER">
             <h1>NUMBER-PLAYER</h1>
+            <?php echo $player::$score; ?>
         </div>
         <div class="SCORE-PLAYER">
             <h1>SCORE-PLAYER</h1>
+
         </div>
     </div>
     <div class="DEALER">

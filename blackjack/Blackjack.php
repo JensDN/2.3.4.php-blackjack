@@ -6,21 +6,16 @@ namespace Blackjack;
 
 class Blackjack
 {
-
-    /**
-     * @var int
-     */
-
-    public static int $score = 0;
-    public static function hit (){
-        self::$score = self::$score + rand(1, 11);
-        return self::$score;
+    public function __wakeup()
+    {
+        $this-> $score = [0] ;
     }
-    public static function stand (){
-        echo 'stand';
+    public function hit(){
+        return $this -> $score += rand(1,11);
     }
-    public static function surrender(){
-        echo 'surrender';
+    public function __sleep()
+    {
+        return [$this -> $score];
     }
 
 }
