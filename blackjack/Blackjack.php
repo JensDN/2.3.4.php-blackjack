@@ -19,13 +19,18 @@ class Blackjack
     }
     public function hit(){
         array_push($this->cards, rand(1, 11));
+        $this->score = array_sum($this->cards);
+        if($this->score > 21){
+            $this->surrender(); }
     }
-    public function stand(){}
+    public function stand(){
+        $this->enable = false;
+    }
     public function surrender(){
         echo 'You lost. Try again';
         $this->enable = false;
         unset($_SESSION['totalValue']);
-        unset($_SESSION['player']);
+        unset($_SESSION['pls    ayer']);
     }
 
 }

@@ -11,17 +11,19 @@ if (session_status() == PHP_SESSION_NONE) {
     $player = $_SESSION['player'];
     $dealer = $_SESSION['dealer'];
 }
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //hit();
-    if ($_POST['submit'] === 'hit()'){
+    if ($_POST['submit'] === 'hit'){
         $player->hit();
+        $_SESSION['player'] = $player;
     }
     //stand();
-    else if ($_POST['submit'] === 'stand()') {
+    else if ($_POST['submit'] === 'stand') {
         $player->stand();
     }
     //surrender();
-    else if ($_POST['submit'] === 'surrender()'){
+    else if ($_POST['submit'] === 'surrender'){
         $player->surrender();
     }
 }
