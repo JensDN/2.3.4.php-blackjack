@@ -6,16 +6,26 @@ namespace Blackjack;
 
 class Blackjack
 {
-    public function __wakeup()
+    public int $score = 0;
+    public array $cards = [];
+    public bool $enable = true;
+    function __construct()
     {
-        $this-> $score = [0] ;
+        array_push($this->cards, rand(1, 11), rand(1, 11));
+        $this->score = array_sum($this->cards);
+        if($this->score > 21){
+        $this->surrender();
+        }
     }
     public function hit(){
-        return $this -> $score += rand(1,11);
+        array_push($this->cards, rand(1, 11));
     }
-    public function __sleep()
-    {
-        return [$this -> $score];
+    public function stand(){}
+    public function surrender(){
+        echo 'You lost. Try again';
+        $this->enable = false;
+        unset($_SESSION['totalValue']);
+        unset($_SESSION['player']);
     }
 
 }
